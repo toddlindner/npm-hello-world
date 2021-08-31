@@ -9,7 +9,8 @@ pipeline {
 
     stage('Run Container on 8079') {
       steps {
-        sh 'docker run -p 8079:8079 -d npm-test'
+        sh '''docker container kill $(docker ps -a -q)
+docker run -p 8079:8079 -d npm-test'''
       }
     }
 

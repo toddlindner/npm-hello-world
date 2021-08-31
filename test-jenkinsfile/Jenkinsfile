@@ -4,17 +4,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Test..'
+                sh 'docker build . -t npm-test'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                echo 'docker kill $(docker ps -q) || true && docker rm $(docker ps -a -q) || true'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'docker run -p 8079:8079 -d npm-test'
             }
         }
     }

@@ -12,7 +12,7 @@ pipeline {
                 echo 'docker kill $(docker ps -q) || true && docker rm $(docker ps -a -q) || true'
             }
         }
-        stage('Deploy') {
+        stage('Publish') {
             steps {
                 sh 'docker run -p 8079:8079 -d npm-test'
             }

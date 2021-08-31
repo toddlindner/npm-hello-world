@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh 'docker system prune --force'
                 sh 'docker build . -t npm-test'
             }
         }
